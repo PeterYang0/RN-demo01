@@ -27,6 +27,7 @@ function Navigator({app: {theme}}) {
       return true;
     } else {
       ToastAndroid.show('再按一次退出', ToastAndroid.SHORT);
+      firstClick = new Date().valueOf();
       return true;
     }
   }

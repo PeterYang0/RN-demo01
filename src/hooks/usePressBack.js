@@ -1,22 +1,16 @@
 import {useEffect} from 'react';
-import {BackHandler, ToastAndroid} from 'react-native';
+import {BackHandler} from 'react-native';
 
-let firstClick = 0;
-export default function usePressBack(props) {
+export default function usePressBack(callback) {
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBack);
     return () => {
       BackHandler.removeEventListener('hardwareBackPress');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleBack() {
-    if (firstClick + 1000 > new Date().valueOf()) {
-      BackHandler.exitApp();
-      return true;
-    } else {
-      ToastAndroid.show('再按一次退出', ToastAndroid.SHORT);
-      return true;
-    }
+    callback();
   }
 }
