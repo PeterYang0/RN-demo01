@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, RefreshControl} from 'react-native';
 import uuid from 'uuid/v4';
 import {useTheme} from '@react-navigation/native';
-import useState from '../../../../hooks/useState';
-import ListItem from '../../../../components/ListItem';
+import useState from '@/hooks/useState';
+import ListItem from '@/components/ListItem';
 
 function getListData() {
   const newList = [];

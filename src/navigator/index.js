@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {connect} from 'react-redux';
 import {DefaultTheme} from '@react-navigation/native';
 import {BackHandler, ToastAndroid} from 'react-native';
 
-import Home from '../page/Home';
-import WelcomePage from '../page/WelcomePage';
-import HotDetail from '../page/HotDetail';
-import CodePush from '../page/CodePush';
+import Home from '@/page/Home';
+import WelcomePage from '@/page/WelcomePage';
+import HotDetail from '@/page/HotDetail';
+import CodePush from '@/page/CodePush';
 
 const Stack = createStackNavigator();
 let firstClick = 0;
