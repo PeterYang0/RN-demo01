@@ -3,16 +3,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {connect} from 'react-redux';
 import {DefaultTheme} from '@react-navigation/native';
-import {BackHandler, ToastAndroid} from 'react-native';
 
 import Home from '@/page/Home';
 import WelcomePage from '@/page/WelcomePage';
 import HotDetail from '@/page/HotDetail';
 import CodePush from '@/page/CodePush';
+import stateChange from '@/utils/stateChangeUtil';
 
 const Stack = createStackNavigator();
-let firstClick = 0;
-function Navigator({app: {theme}}) {
+function Navigator({app: {theme}, dispatch}) {
   const MyTheme = {
     ...DefaultTheme,
     colors: {
@@ -21,27 +20,10 @@ function Navigator({app: {theme}}) {
     },
   };
 
-  function handleBack() {
-    if (firstClick + 1000 > new Date().valueOf()) {
-      BackHandler.exitApp();
-      return true;
-    } else {
-      ToastAndroid.show('再按一次退出', ToastAndroid.SHORT);
-      firstClick = new Date().valueOf();
-      return true;
-    }
-  }
   return (
     <NavigationContainer
       theme={MyTheme}
-      onStateChange={state => {
-        const {index, routeNames} = state;
-        if (routeNames[index] === 'home') {
-          BackHandler.addEventListener('hardwareBackPress', handleBack);
-        } else {
-          BackHandler.removeEventListener('hardwareBackPress', handleBack);
-        }
-      }}>
+      onStateChange={state => stateChange({state})}>
       <Stack.Navigator>
         <Stack.Screen
           name="welcome"

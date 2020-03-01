@@ -42,7 +42,7 @@ function Home(props) {
         }}
       />
       <BottomTab.Screen
-        name="Favourite"
+        name="favourite"
         options={{
           tabBarLabel: '收藏',
           tabBarIcon: ({color, size}) => (

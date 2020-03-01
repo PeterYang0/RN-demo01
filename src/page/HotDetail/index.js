@@ -1,7 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import {connect} from 'react-redux';
+import useSetStatusBarbgColor from '@/hooks/useSetStatusBarbgColor';
 
-export default function HotDetail({navigation, route}) {
+function HotDetail({navigation, route, dispatch}) {
+  useSetStatusBarbgColor(dispatch);
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text onPress={() => navigation.navigate('test')}>
@@ -10,3 +13,4 @@ export default function HotDetail({navigation, route}) {
     </View>
   );
 }
+export default connect(state => ({app: state.app}))(HotDetail);
