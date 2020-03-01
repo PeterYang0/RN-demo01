@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {useTheme} from '@react-navigation/native';
-
+import NavigationBar from '@/components/NavigationBar.js';
 import Content from './Content';
 
 const Tab = createMaterialTopTabNavigator();
@@ -28,14 +28,7 @@ const Tab = createMaterialTopTabNavigator();
 // safeAreaInset：覆盖的forceInset prop，默认是{ bottom: 'always', top: 'never' }，可选值：top | bottom | left | right ('always' | 'never')；
 
 export default function HotList() {
-  useEffect(() => {
-    console.log('did');
-    return () => {
-      console.log('undid');
-    };
-  }, []);
   const {colors} = useTheme();
-  console.log(colors);
   const styles = StyleSheet.create({
     tabStyle: {
       minWidth: 30,
@@ -51,21 +44,32 @@ export default function HotList() {
 
   const tabs = ['java', 'php', 'python', 'javascript'];
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        tabStyle: styles.tabStyle,
-        labelStyle: styles.labelStyle,
-        indicatorStyle: styles.indicatorStyle, // 底部的线
-        upperCaseLabel: false,
-        scrollEnabled: true,
-        style: {backgroundColor: colors.primary},
-        // activeTintColor: 'red',
-      }}>
-      {tabs.map(item => (
-        <Tab.Screen key={item} name={item}>
-          {comProps => <Content {...comProps} keyWord={item} />}
-        </Tab.Screen>
-      ))}
-    </Tab.Navigator>
+    <>
+      <NavigationBar
+        title={'最热'}
+        statusBar={{
+          backgroundColor: colors.primary,
+          barStyle: 'light-content',
+        }}
+        // style={theme.styles.navBar}
+        // rightButton={this.renderRightButton()}
+      />
+      <Tab.Navigator
+        tabBarOptions={{
+          tabStyle: styles.tabStyle,
+          labelStyle: styles.labelStyle,
+          indicatorStyle: styles.indicatorStyle, // 底部的线
+          upperCaseLabel: false,
+          scrollEnabled: true,
+          style: {backgroundColor: colors.primary},
+          // activeTintColor: 'red',
+        }}>
+        {tabs.map(item => (
+          <Tab.Screen key={item} name={item}>
+            {comProps => <Content {...comProps} keyWord={item} />}
+          </Tab.Screen>
+        ))}
+      </Tab.Navigator>
+    </>
   );
 }
