@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import CodePush from 'react-native-code-push';
-
+import NavigationBar from '@/components/NavigationBar.js';
 class App extends Component {
   constructor() {
     super();
@@ -117,30 +117,33 @@ class App extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to CodePush!</Text>
-        <TouchableOpacity onPress={this.sync.bind(this)}>
-          <Text style={styles.syncButton}>检查更新</Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity onPress={this.syncImmediate.bind(this)}>
+      <>
+        <NavigationBar title="CodePush" navigation={this.props.navigation} />
+        <View style={styles.container}>
+          <Text style={styles.welcome}>Welcome to CodePush!</Text>
+          <TouchableOpacity onPress={this.sync.bind(this)}>
+            <Text style={styles.syncButton}>检查更新</Text>
+          </TouchableOpacity>
+          {/* <TouchableOpacity onPress={this.syncImmediate.bind(this)}>
           <Text style={styles.syncButton}>Press for dialog-driven sync</Text>
         </TouchableOpacity> */}
-        {progressView}
-        {/* <Image
+          {progressView}
+          {/* <Image
           style={styles.image}
           resizeMode={'contain'}
           source={require('./images/laptop_phone_howitworks.png')}
         /> */}
-        {/* <TouchableOpacity onPress={this.toggleAllowRestart.bind(this)}>
+          {/* <TouchableOpacity onPress={this.toggleAllowRestart.bind(this)}>
           <Text style={styles.restartToggleButton}>
             Restart {this.state.restartAllowed ? 'allowed' : 'forbidden'}
           </Text>
         </TouchableOpacity> */}
-        {/* <TouchableOpacity onPress={this.getUpdateMetadata.bind(this)}>
+          {/* <TouchableOpacity onPress={this.getUpdateMetadata.bind(this)}>
           <Text style={styles.syncButton}>Press for Update Metadata</Text>
         </TouchableOpacity> */}
-        <Text style={styles.messages}>{this.state.syncMessage || ''}</Text>
-      </View>
+          <Text style={styles.messages}>{this.state.syncMessage || ''}</Text>
+        </View>
+      </>
     );
   }
 }

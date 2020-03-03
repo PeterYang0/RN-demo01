@@ -39,8 +39,20 @@ function Navigator({app: {theme}, dispatch}) {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="hot-detail" component={HotDetail} />
-        <Stack.Screen name="code-push" component={CodePush} />
+        <Stack.Screen
+          name="hot-detail"
+          component={HotDetail}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="code-push"
+          component={CodePush}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

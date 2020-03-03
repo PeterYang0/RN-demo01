@@ -27,7 +27,7 @@ const Tab = createMaterialTopTabNavigator();
 // allowFontScaling: 设置TabBar标签是否支持缩放，默认支持；
 // safeAreaInset：覆盖的forceInset prop，默认是{ bottom: 'always', top: 'never' }，可选值：top | bottom | left | right ('always' | 'never')；
 
-export default function HotList() {
+export default function HotList({navigation}) {
   const {colors} = useTheme();
   const styles = StyleSheet.create({
     tabStyle: {
@@ -45,15 +45,7 @@ export default function HotList() {
   const tabs = ['java', 'php', 'python', 'javascript'];
   return (
     <>
-      <NavigationBar
-        title={'最热'}
-        statusBar={{
-          backgroundColor: colors.primary,
-          barStyle: 'light-content',
-        }}
-        // style={theme.styles.navBar}
-        // rightButton={this.renderRightButton()}
-      />
+      <NavigationBar title="最热" goBack={false} />
       <Tab.Navigator
         tabBarOptions={{
           tabStyle: styles.tabStyle,

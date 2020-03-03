@@ -8,6 +8,7 @@ import {
   DeviceInfo,
 } from 'react-native';
 import {useTheme} from '@react-navigation/native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const NAV_BAR_HEIGHT_IOS = 35; //导航栏在iOS中的高度
 const NAV_BAR_HEIGHT_ANDROID = 35; //导航栏在Android中的高度
@@ -15,12 +16,25 @@ const STATUS_BAR_HEIGHT = DeviceInfo.isIPhoneX_deprecated ? 0 : 20; //状态栏�
 
 export default function NavigationBar(props) {
   const {
+    navigation,
+    titleView, // title 组件
+    tatusBarStyle, // tatusBar拓展样式
+    title, // 标题
+    statusBarHide = false, // tatusBar的隐藏
+    style, // 样式
+    titleLayoutStyle, // title拓展样式
+    leftButton, // 左按钮
+    goBack = true, // 返回
+    rightButton, // 右按钮
+  } = props;
+  const {
     colors: {primary, statusBarBgColor},
   } = useTheme();
 
   const styles = StyleSheet.create({
     container: {
       backgroundColor: primary,
+      paddingBottom: 4,
     },
     navBarButton: {
       alignItems: 'center',
@@ -53,8 +67,9 @@ export default function NavigationBar(props) {
 
   const defaultStatusBar = {
     barStyle: 'light-content',
-    hidden: false,
+    hidden: statusBarHide,
     backgroundColor: statusBarBgColor,
+    ...tatusBarStyle,
   };
   let statusBar = !defaultStatusBar.hidden ? (
     <View style={styles.statusBar}>
@@ -62,32 +77,35 @@ export default function NavigationBar(props) {
     </View>
   ) : null;
 
-  let titleView = props.titleView ? (
-    props.titleView
-  ) : (
-    <Text ellipsizeMode="head" numberOfLines={1} style={styles.title}>
-      {props.title}
-    </Text>
-  );
-
-  let content = props.hide ? null : (
-    <View style={styles.navBar}>
-      {getButtonElement(props.leftButton)}
-      <View style={[styles.navBarTitleContainer, props.titleLayoutStyle]}>
-        {titleView}
-      </View>
-      {getButtonElement(props.rightButton)}
-    </View>
-  );
-
   function getButtonElement(data) {
     return <View style={styles.navBarButton}>{data ? data : null}</View>;
   }
 
   return (
-    <View style={[styles.container, props.style]}>
+    <View style={[styles.container, style]}>
       {statusBar}
-      {content}
+      <View style={styles.navBar}>
+        {goBack && (
+          <AntDesign
+            style={{marginLeft: 12}}
+            name="left"
+            size={22}
+            color="#fff"
+            onPress={() => navigation && navigation.goBack()}
+          />
+        )}
+        {getButtonElement(leftButton)}
+        <View style={[styles.navBarTitleContainer, titleLayoutStyle]}>
+          {titleView ? (
+            titleView
+          ) : (
+            <Text ellipsizeMode="head" numberOfLines={1} style={styles.title}>
+              {title}
+            </Text>
+          )}
+        </View>
+        {getButtonElement(rightButton)}
+      </View>
     </View>
   );
 }
