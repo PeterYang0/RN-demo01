@@ -1,16 +1,8 @@
-module.exports = {
-  id: '1643349',
-  name: 'trending-rn-app',
-  font_family: 'iconfont',
-  css_prefix_text: 'trending-icon',
-  description: 'trending App的icon库',
-  glyphs: [
-    {
-      icon_id: '702681',
-      name: 'home',
-      font_class: 'home',
-      unicode: 'e8cf',
-      unicode_decimal: 59599,
-    },
-  ],
-};
+import * as json from '@/assets/icons/iconfont.json';
+
+const {glyphs = []} = json.default;
+const mapper = {};
+glyphs.forEach(item => {
+  mapper[item.name] = item.unicode_decimal;
+});
+export default mapper;

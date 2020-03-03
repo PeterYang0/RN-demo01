@@ -1,7 +1,7 @@
-import {createIconSetFromIcoMoon} from 'react-native-vector-icons';
-import icoMoonConfig from './config';
+import {createIconSet} from 'react-native-vector-icons';
+import mapper from './config';
 
-const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'Icomoon', 'icomoon.ttf');
+const Icon = createIconSet(mapper, 'iconfont', 'iconfont.ttf');
 export default Icon;
 
 export const Button = Icon.Button;

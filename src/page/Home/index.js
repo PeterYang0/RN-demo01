@@ -5,6 +5,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import Icon from '@/components/Icon';
 import Hot from './Hot';
 import Trending from './Trending';
 import Favourite from './Favourite';
@@ -47,7 +48,7 @@ export default function Home(props) {
         options={{
           tabBarLabel: '趋势',
           tabBarIcon: ({color, size}) => (
-            <AntDesign name="linechart" size={size} color={color} />
+            <Icon name="home" size={size} color={color} />
           ),
         }}
       />
