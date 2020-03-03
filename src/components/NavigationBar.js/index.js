@@ -6,7 +6,10 @@ import {
   View,
   Platform,
   DeviceInfo,
+  TouchableOpacity,
 } from 'react-native';
+import {useSelector} from 'react-redux';
+
 import {useTheme} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -15,8 +18,8 @@ const NAV_BAR_HEIGHT_ANDROID = 35; //导航栏在Android中的高度
 const STATUS_BAR_HEIGHT = DeviceInfo.isIPhoneX_deprecated ? 0 : 20; //状态栏的高度
 
 export default function NavigationBar(props) {
+  const {navigation} = useSelector(state => state.app);
   const {
-    navigation,
     titleView, // title 组件
     tatusBarStyle, // tatusBar拓展样式
     title, // 标题
@@ -86,13 +89,14 @@ export default function NavigationBar(props) {
       {statusBar}
       <View style={styles.navBar}>
         {goBack && (
-          <AntDesign
-            style={{marginLeft: 12}}
-            name="left"
-            size={22}
-            color="#fff"
-            onPress={() => navigation && navigation.goBack()}
-          />
+          <TouchableOpacity onPress={() => navigation && navigation.goBack()}>
+            <AntDesign
+              style={{marginLeft: 12}}
+              name="left"
+              size={22}
+              color="#fff"
+            />
+          </TouchableOpacity>
         )}
         {getButtonElement(leftButton)}
         <View style={[styles.navBarTitleContainer, titleLayoutStyle]}>

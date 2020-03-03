@@ -118,7 +118,7 @@ class App extends Component {
 
     return (
       <>
-        <NavigationBar title="CodePush" navigation={this.props.navigation} />
+        <NavigationBar title="CodePush" />
         <View style={styles.container}>
           <Text style={styles.welcome}>Welcome to CodePush!</Text>
           <TouchableOpacity onPress={this.sync.bind(this)}>

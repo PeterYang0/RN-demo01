@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {connect} from 'react-redux';
 import NavigationBar from '@/components/NavigationBar.js';
 
-function HotDetail({navigation, route, dispatch}) {
+export default function HotDetail({navigation, route}) {
   return (
     <>
-      <NavigationBar title="详情" navigation={navigation} />
+      <NavigationBar title="详情" />
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Text onPress={() => navigation.navigate('test')}>
           这是详情-id:{route.params.id}
@@ -15,4 +14,3 @@ function HotDetail({navigation, route, dispatch}) {
     </>
   );
 }
-export default connect(state => ({app: state.app}))(HotDetail);

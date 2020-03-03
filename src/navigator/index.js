@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {DefaultTheme} from '@react-navigation/native';
 
 import Home from '@/page/Home';
@@ -11,7 +11,8 @@ import CodePush from '@/page/CodePush';
 import stateChange from '@/utils/stateChangeUtil';
 
 const Stack = createStackNavigator();
-function Navigator({app: {theme}, dispatch}) {
+export default function Navigator() {
+  const {theme} = useSelector(state => state.app);
   const MyTheme = {
     ...DefaultTheme,
     colors: {
@@ -57,5 +58,3 @@ function Navigator({app: {theme}, dispatch}) {
     </NavigationContainer>
   );
 }
-
-export default connect(state => ({app: state.app}))(Navigator);

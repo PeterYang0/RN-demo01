@@ -1,18 +1,17 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
-function Trending(props) {
+export default function Trending(props) {
+  const dispatch = useDispatch();
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text
         onPress={() => {
-          props.dispatch({type: 'update', payload: {count: 5}});
+          dispatch({type: 'update', payload: {count: 5}});
         }}>
         趋势
       </Text>
     </View>
   );
 }
-
-export default connect()(Trending);

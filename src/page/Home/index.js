@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 // import {View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -9,10 +9,20 @@ import Hot from './Hot';
 import Trending from './Trending';
 import Favourite from './Favourite';
 import My from './My/index';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 const BottomTab = createBottomTabNavigator();
-function Home(props) {
+export default function Home(props) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: 'update',
+      payload: {
+        navigation: props.navigation,
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <BottomTab.Navigator
       // initialRouteName="trending"
@@ -64,5 +74,3 @@ function Home(props) {
     </BottomTab.Navigator>
   );
 }
-
-export default connect(state => ({app: state.app}))(Home);
