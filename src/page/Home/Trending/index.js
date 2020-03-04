@@ -1,17 +1,14 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {useDispatch} from 'react-redux';
+import NavigationBar from '@/components/NavigationBar.js';
 
 export default function Trending(props) {
-  const dispatch = useDispatch();
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text
-        onPress={() => {
-          dispatch({type: 'update', payload: {count: 5}});
-        }}>
-        趋势
-      </Text>
-    </View>
+    <>
+      <NavigationBar title="趋势" goBack={false} />
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Text>趋势</Text>
+      </View>
+    </>
   );
 }

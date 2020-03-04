@@ -6,45 +6,45 @@ import {useTheme} from '@react-navigation/native';
 export default function ListItem(props) {
   const {
     data: {item},
-    navigation,
+    // navigation,
   } = props;
   const {
     colors: {primary},
   } = useTheme();
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('hot-detail', {id: item.id});
-      }}>
-      <View style={styles.cell_container}>
-        <Text style={styles.title}>{item.full_name}</Text>
-        <Text style={styles.description}>{item.description}</Text>
+    // <TouchableOpacity
+    //   onPress={() => {
+    //     navigation.navigate('hot-detail', {id: item.id});
+    //   }}>
+    <View style={styles.cell_container}>
+      <Text style={styles.title}>{item.full_name}</Text>
+      <Text style={styles.description}>{item.description}</Text>
+      <View style={styles.row}>
         <View style={styles.row}>
-          <View style={styles.row}>
-            <Text>Author:</Text>
-            <Image
-              style={{height: 22, width: 22}}
-              source={{uri: item.owner.avatar_url}}
-            />
-          </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text>Start:</Text>
-            <Text>{item.stargazers_count}</Text>
-          </View>
-          <TouchableOpacity
-            style={{padding: 6}}
-            underlayColor="transparent"
-            onPress={() => this.onPressFavorite()}>
-            <FontAwesome
-              // name={this.state.isFavorite ? 'star' : 'star-o'}
-              name="star-o"
-              size={26}
-              style={{color: primary}}
-            />
-          </TouchableOpacity>
+          <Text>Author:</Text>
+          <Image
+            style={{height: 22, width: 22}}
+            source={{uri: item.owner.avatar_url}}
+          />
         </View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Text>Start:</Text>
+          <Text>{item.stargazers_count}</Text>
+        </View>
+        <TouchableOpacity
+          style={{padding: 6}}
+          underlayColor="transparent"
+          onPress={() => this.onPressFavorite()}>
+          <FontAwesome
+            // name={this.state.isFavorite ? 'star' : 'star-o'}
+            name="star-o"
+            size={26}
+            style={{color: primary}}
+          />
+        </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    </View>
+    // </TouchableOpacity>
   );
 }
 const styles = StyleSheet.create({

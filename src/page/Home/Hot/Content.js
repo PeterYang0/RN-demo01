@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, RefreshControl} from 'react-native';
+import uuid from 'uuid/v4';
 import {useTheme} from '@react-navigation/native';
 import useState from '@/hooks/useState';
 import ListItem from '@/components/ListItem';
@@ -20,14 +21,14 @@ export default function Content({navigation, keyWord}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  function loadData(params) {
+  function loadData(params = {}) {
     setState({
       isLoading: true,
     });
     fetchHotList(params)
       .then(res => {
         setState({
-          list: [...list, ...res.items],
+          list: page === 1 ? res.items : [...list, ...res.items],
         });
       })
       .finally(() => {
@@ -51,7 +52,7 @@ export default function Content({navigation, keyWord}) {
         renderItem={data => (
           <ListItem keyWord={keyWord} navigation={navigation} data={data} />
         )} // 渲染列表
-        keyExtractor={item => String(item.id)} // key
+        keyExtractor={item => String(item.id + uuid())} // key
         ListEmptyComponent={_renderListEmptyComp()} // 列表为空时渲染该组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element
         showsVerticalScrollIndicator={false} // 当此属性为true的时候，显示一个垂直方向的滚动条，默认为: true
         showsHorizontalScrollIndicator={false} // 当此属性为true的时候，显示一个水平方向的滚动条，默认为: true
@@ -63,7 +64,9 @@ export default function Content({navigation, keyWord}) {
             titleColor={primary}
             colors={[primary]}
             refreshing={isLoading} // loading状态
-            onRefresh={() => {}} // 刷新回调
+            onRefresh={() => {
+              setState({page: 1});
+            }} // 刷新回调
           />
         }
       />
