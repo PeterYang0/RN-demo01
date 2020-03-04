@@ -34,17 +34,9 @@ export default function request(url, options = {}) {
         });
       })
       .then(res => {
-        if (res.failed !== true) {
-          resolve(res);
-        } else {
-          const {swal = true} = options;
-          reject(res);
-          if (swal) {
-            // swalAlert(res.message);
-          }
-        }
-      });
-    //   .catch(catchHttpError());
+        resolve(res);
+      })
+      .catch(err => reject(err));
   });
 }
 
