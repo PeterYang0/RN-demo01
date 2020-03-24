@@ -1,4 +1,5 @@
 import {filterNullValueObject, generateUrlWithGetParam} from './index';
+import ToastManager from '@/utils/toast';
 
 export default function request(url, options = {}) {
   let newUrl = url;
@@ -36,7 +37,10 @@ export default function request(url, options = {}) {
       .then(res => {
         resolve(res);
       })
-      .catch(err => reject(err));
+      .catch(err => {
+        ToastManager.netError();
+        reject(err);
+      });
   });
 }
 
