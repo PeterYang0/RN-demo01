@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
+import ToastManager from '@/utils/toast';
 import {RightBtn} from '@/components/CommonIcon';
 import NavigationBar from '@/components/NavigationBar.js';
 import {useTheme} from '@react-navigation/native';
@@ -27,7 +27,7 @@ export default function My({navigation, route}) {
             name: 'checkcircleo',
           },
           name: '自定义语言',
-          callback: e => e,
+          callback: e => ToastManager.netError(),
         },
         {
           icon: {

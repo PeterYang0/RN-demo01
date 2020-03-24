@@ -1270,11 +1270,6 @@
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-GitHubTrending@^3.1.5:
-  version "3.1.5"
-  resolved "http://nexus.saas.hand-china.com/content/groups/srm-npm-group/GitHubTrending/-/GitHubTrending-3.1.5.tgz#feadaded0cb339a274e08f4910203a45d008df1a"
-  integrity sha512-G2jqjRaGdciUs4b08bTD7tg5kDptvlQmwXN9tpciJXCAL6+NIueX5hOzvR0RRKTRlSniSIQYZ7Eex1Wb/3Gr7g==
-
 abab@^2.0.0:
   version "2.0.3"
   resolved "http://nexus.saas.hand-china.com/content/groups/srm-npm-group/abab/-/abab-2.0.3.tgz#623e2075e02eb2d3f2475e49f99c91846467907a"
@@ -5873,7 +5868,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.4"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "http://nexus.saas.hand-china.com/content/groups/srm-npm-group/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5997,6 +5992,13 @@ react-native-code-push@^6.0.0:
     plist "3.0.1"
     semver "^5.6.0"
     xcode "1.0.0"
+
+react-native-easy-toast@^1.2.0:
+  version "1.2.0"
+  resolved "http://nexus.saas.hand-china.com/content/groups/srm-npm-group/react-native-easy-toast/-/react-native-easy-toast-1.2.0.tgz#0f70bcb99e3306cda4800c244bfb4a67d42276ed"
+  integrity sha512-UtpxnRn1ME+035Uey4VR+9K0P4aVoTcWNOx5QkioWBe3LBKMPb/kZjrQ1LtvWzOyeGP4TeTUTtMX3IOPWv5MtA==
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-gesture-handler@^1.5.6:
   version "1.6.0"
