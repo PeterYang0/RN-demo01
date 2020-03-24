@@ -1,4 +1,5 @@
 import React from 'react';
+import {Platform, ToastAndroid} from 'react-native';
 import Toast from 'react-native-easy-toast';
 
 export default class ToastManager {
@@ -15,7 +16,11 @@ export default class ToastManager {
    * @param callback
    */
   static show(text, duration, callback) {
-    this.toast && this.toast.show(text, duration, callback);
+    if (Platform.OS === 'ios') {
+      this.toast && this.toast.show(text, duration, callback);
+    } else {
+      ToastAndroid.show(text, ToastAndroid.SHORT);
+    }
   }
 
   /**
@@ -48,11 +53,13 @@ export class ToastComponent extends React.Component {
     return (
       <Toast
         ref={e => (ToastManager.toast = e)}
+        style={{backgroundColor: '#000'}}
+        // position="top"
         positionValue={200}
-        fadeInDuration={300}
-        fadeOutDuration={300}
-        opacity={0.7}
-        textStyle={{color: '#000'}}
+        fadeInDuration={750}
+        fadeOutDuration={1000}
+        opacity={0.8}
+        textStyle={{color: '#fff'}}
       />
     );
   }
