@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
+
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {useTheme} from '@react-navigation/native';
 import NavigationBar from '@/components/NavigationBar.js';
@@ -31,7 +32,7 @@ export default function HotList({navigation}) {
   const {colors} = useTheme();
   const styles = StyleSheet.create({
     tabStyle: {
-      minWidth: 30,
+      width: 120,
     },
     labelStyle: {
       color: colors.HomeTabActiveFontColor,
@@ -45,7 +46,14 @@ export default function HotList({navigation}) {
   const tabs = ['java', 'php', 'python', 'javascript'];
   return (
     <>
-      <NavigationBar title="最热" goBack={false} />
+      <NavigationBar
+        title="最热项目"
+        goBack={false}
+        search
+        searchCallback={() => {
+          console.log(11111);
+        }}
+      />
       <Tab.Navigator
         tabBarOptions={{
           tabStyle: styles.tabStyle,

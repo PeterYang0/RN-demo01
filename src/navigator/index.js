@@ -26,13 +26,13 @@ export default function Navigator() {
       theme={MyTheme}
       onStateChange={state => stateChange({state})}>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="welcome"
           component={WelcomePage}
           options={{
             headerShown: false,
           }}
-        />
+        /> */}
         <Stack.Screen
           name="home"
           component={Home}

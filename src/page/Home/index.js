@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 // import {View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+// import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // import Icon from '@/components/Icon';
 import Hot from './Hot';
@@ -36,9 +37,9 @@ export default function Home(props) {
         name="hot"
         component={Hot}
         options={{
-          tabBarLabel: '最热',
+          tabBarLabel: 'github',
           tabBarIcon: ({color, size}) => (
-            <FontAwesome5 name="hotjar" size={size} color={color} />
+            <AntDesign name="github" size={size} color={color} />
           ),
         }}
       />
@@ -46,10 +47,14 @@ export default function Home(props) {
         name="trending"
         component={Trending}
         options={{
-          tabBarLabel: '趋势',
+          tabBarLabel: '音乐',
           tabBarIcon: ({color, size}) => (
             // <Icon name="home" size={size} color={color} />
-            <AntDesign name="linechart" size={size} color={color} />
+            <MaterialCommunityIcons
+              name="music-circle-outline"
+              size={size}
+              color={color}
+            />
           ),
         }}
       />

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useSelector} from 'react-redux';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import {useTheme} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -29,6 +30,8 @@ export default function NavigationBar(props) {
     leftButton, // 左按钮
     goBack = true, // 返回
     rightButton, // 右按钮
+    search, // 搜索按钮
+    searchCallback = e => e,
   } = props;
   const {
     colors: {primary, statusBarBgColor},
@@ -80,8 +83,22 @@ export default function NavigationBar(props) {
     </View>
   ) : null;
 
-  function getButtonElement(data) {
-    return <View style={styles.navBarButton}>{data ? data : null}</View>;
+  function getButtonElement(data, flag) {
+    return (
+      <View style={styles.navBarButton}>
+        {data ? data : null}
+        {search && flag && (
+          <TouchableOpacity>
+            <EvilIcons
+              onPress={() => searchCallback()}
+              name="search"
+              size={32}
+              style={{color: '#fff', paddingRight: 10}}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
   }
 
   return (
@@ -108,7 +125,7 @@ export default function NavigationBar(props) {
             </Text>
           )}
         </View>
-        {getButtonElement(rightButton)}
+        {getButtonElement(rightButton, true)}
       </View>
     </View>
   );
