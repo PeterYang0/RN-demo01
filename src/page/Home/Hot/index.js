@@ -51,7 +51,7 @@ export default function HotList({navigation}) {
         goBack={false}
         search
         searchCallback={() => {
-          console.log(11111);
+          navigation.navigate('search-page', {type: 'github'});
         }}
       />
       <Tab.Navigator

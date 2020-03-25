@@ -5,6 +5,7 @@ import {useTheme} from '@react-navigation/native';
 import useState from '@/hooks/useState';
 import ListItem from '@/components/ListItem';
 import {fetchHotList} from '@/services/hotListService';
+import NoData from '@/components/NoData';
 
 export default function Content({navigation, keyWord}) {
   const {
@@ -37,14 +38,6 @@ export default function Content({navigation, keyWord}) {
         });
       });
   }
-
-  function _renderListEmptyComp() {
-    return (
-      <View>
-        <Text>没有数据时显示本段文字</Text>
-      </View>
-    );
-  }
   return (
     <View style={styles.conatiner}>
       <FlatList
@@ -53,7 +46,7 @@ export default function Content({navigation, keyWord}) {
           <ListItem keyWord={keyWord} navigation={navigation} data={data} />
         )} // 渲染列表
         keyExtractor={item => String(item.id + uuid())} // key
-        ListEmptyComponent={_renderListEmptyComp()} // 列表为空时渲染该组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element
+        ListEmptyComponent={<NoData />} // 列表为空时渲染该组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element
         showsVerticalScrollIndicator={false} // 当此属性为true的时候，显示一个垂直方向的滚动条，默认为: true
         showsHorizontalScrollIndicator={false} // 当此属性为true的时候，显示一个水平方向的滚动条，默认为: true
         onEndReached={() => setState({page: page + 1})} // 在列表底部往下滑时触发该函数。表示当列表被滚动到距离内容最底部不足onEndReachedThreshold的距离时调用
@@ -77,5 +70,6 @@ export default function Content({navigation, keyWord}) {
 const styles = StyleSheet.create({
   conatiner: {
     flex: 1,
+    // backgroundColor: '#fff',
   },
 });

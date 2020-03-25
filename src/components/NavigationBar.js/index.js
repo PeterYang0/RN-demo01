@@ -41,6 +41,8 @@ export default function NavigationBar(props) {
     container: {
       backgroundColor: primary,
       paddingBottom: 4,
+      paddingRight: 10,
+      paddingLeft: 10,
     },
     navBarButton: {
       alignItems: 'center',
@@ -93,7 +95,7 @@ export default function NavigationBar(props) {
               onPress={() => searchCallback()}
               name="search"
               size={32}
-              style={{color: '#fff', paddingRight: 10}}
+              style={{color: '#fff'}}
             />
           </TouchableOpacity>
         )}
@@ -107,12 +109,7 @@ export default function NavigationBar(props) {
       <View style={styles.navBar}>
         {goBack && (
           <TouchableOpacity onPress={() => navigation && navigation.goBack()}>
-            <AntDesign
-              style={{marginLeft: 12}}
-              name="left"
-              size={22}
-              color="#fff"
-            />
+            <AntDesign name="left" size={22} color="#fff" />
           </TouchableOpacity>
         )}
         {getButtonElement(leftButton)}
