@@ -1,17 +1,17 @@
-// GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
+GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
 import 'react-native-gesture-handler';
 import React from 'react';
 import {Provider} from 'react-redux';
-
-import {ToastComponent} from './src/utils/toast';
+import {Provider as ProviderX} from '@ant-design/react-native';
 import store from './src/store';
 import Navigator from './src/navigator';
 
 export default function App() {
   return (
     <Provider store={store}>
-      <Navigator />
-      <ToastComponent />
+      <ProviderX>
+        <Navigator />
+      </ProviderX>
     </Provider>
   );
 }

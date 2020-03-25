@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import {InputItem, List, Button} from '@ant-design/react-native';
 
 import {useTheme} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -45,7 +46,13 @@ export default function NavigationBar(props) {
       paddingLeft: 10,
     },
     navBarButton: {
-      alignItems: 'center',
+      position: 'absolute',
+    },
+    leftButton: {
+      left: 0,
+    },
+    rightButton: {
+      right: 0,
     },
     navBar: {
       flexDirection: 'row',
@@ -56,17 +63,14 @@ export default function NavigationBar(props) {
         Platform.OS === 'ios' ? NAV_BAR_HEIGHT_IOS : NAV_BAR_HEIGHT_ANDROID,
     },
     navBarTitleContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'absolute',
-      left: 40,
-      right: 40,
-      top: 0,
-      bottom: 0,
+      flex: 1,
+      marginLeft: 40,
+      marginRight: 40,
     },
     title: {
       fontSize: 20,
       color: 'white',
+      textAlign: 'center',
     },
     statusBar: {
       height: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT : 0,
@@ -85,11 +89,24 @@ export default function NavigationBar(props) {
     </View>
   ) : null;
 
-  function getButtonElement(data, flag) {
+  function getLeftButtonElement(button) {
     return (
-      <View style={styles.navBarButton}>
-        {data ? data : null}
-        {search && flag && (
+      <View style={[styles.navBarButton, styles.leftButton]}>
+        {goBack && (
+          <TouchableOpacity onPress={() => navigation && navigation.goBack()}>
+            <AntDesign name="left" size={22} color="#fff" />
+          </TouchableOpacity>
+        )}
+        {button ? button : null}
+      </View>
+    );
+  }
+
+  function getRightButtonElement(button) {
+    return (
+      <View style={[styles.navBarButton, styles.rightButton]}>
+        {button ? button : null}
+        {search && (
           <TouchableOpacity>
             <EvilIcons
               onPress={() => searchCallback()}
@@ -107,12 +124,7 @@ export default function NavigationBar(props) {
     <View style={[styles.container, style]}>
       {statusBar}
       <View style={styles.navBar}>
-        {goBack && (
-          <TouchableOpacity onPress={() => navigation && navigation.goBack()}>
-            <AntDesign name="left" size={22} color="#fff" />
-          </TouchableOpacity>
-        )}
-        {getButtonElement(leftButton)}
+        {getLeftButtonElement(leftButton)}
         <View style={[styles.navBarTitleContainer, titleLayoutStyle]}>
           {titleView ? (
             titleView
@@ -122,7 +134,7 @@ export default function NavigationBar(props) {
             </Text>
           )}
         </View>
-        {getButtonElement(rightButton, true)}
+        {getRightButtonElement(rightButton, true)}
       </View>
     </View>
   );
