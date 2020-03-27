@@ -7,16 +7,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import ToastManager from '@/utils/toast';
 import {RightBtn} from '@/components/CommonIcon';
 import NavigationBar from '@/components/NavigationBar.js';
 import {useTheme} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 export default function My({navigation, route}) {
   const {
     colors: {primary},
   } = useTheme();
-
+  const {userName} = useSelector(state => state.app.userInfo);
   const menu = [
     {
       name: '趋势管理',
@@ -27,7 +27,7 @@ export default function My({navigation, route}) {
             name: 'checkcircleo',
           },
           name: '自定义语言',
-          callback: e => ToastManager.netError(),
+          callback: e => e,
         },
         {
           icon: {
@@ -108,24 +108,53 @@ export default function My({navigation, route}) {
     ));
   }
 
+  function renderUserInfo() {
+    return (
+      <TouchableOpacity style={styles.item} onPress={() => {}}>
+        <View style={styles.about_left}>
+          <AntDesign
+            name="github"
+            size={40}
+            style={{
+              marginRight: 10,
+              color: primary,
+            }}
+          />
+          <Text>{userName}</Text>
+        </View>
+        <RightBtn />
+      </TouchableOpacity>
+    );
+  }
+
+  function renderVistor() {
+    return (
+      <View style={styles.item}>
+        <View style={styles.about_left}>
+          <AntDesign
+            name="github"
+            size={40}
+            style={{
+              marginRight: 10,
+              color: primary,
+            }}
+          />
+          <Text>暂未登录</Text>
+        </View>
+        <Text
+          style={styles.tologin}
+          onPress={() => navigation.navigate('login')}>
+          立即登录
+        </Text>
+      </View>
+    );
+  }
+
   return (
     <>
       <NavigationBar title="我的" goBack={false} />
       <ScrollView>
-        <TouchableOpacity style={styles.item} onPress={() => {}}>
-          <View style={styles.about_left}>
-            <AntDesign
-              name="github"
-              size={40}
-              style={{
-                marginRight: 10,
-                color: primary,
-              }}
-            />
-            <Text>GitHub Popular</Text>
-          </View>
-          <RightBtn />
-        </TouchableOpacity>
+        {userName ? renderUserInfo() : renderVistor()}
         <View style={styles.line} />
         {renderItems()}
       </ScrollView>
@@ -169,5 +198,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
+  },
+  tologin: {
+    padding: 8,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#999',
   },
 });

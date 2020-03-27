@@ -9,6 +9,7 @@ import Home from '@/page/Home';
 import HotDetail from '@/page/HotDetail';
 import SearchPage from '@/page/SearchPage';
 import CodePush from '@/page/CodePush';
+import Login from '@/page/Login';
 
 const Stack = createStackNavigator();
 export default function Navigator() {
@@ -50,6 +51,13 @@ export default function Navigator() {
         <Stack.Screen
           name="search-page"
           component={SearchPage}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="login"
+          component={Login}
           options={{
             headerShown: false,
           }}

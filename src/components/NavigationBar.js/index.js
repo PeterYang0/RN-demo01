@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import {InputItem, List, Button} from '@ant-design/react-native';
 
 import {useTheme} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';

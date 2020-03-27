@@ -18,7 +18,7 @@ export default function Content({navigation, keyWord}) {
   });
   const {isLoading, list, page} = state;
   useEffect(() => {
-    loadData({keyWord, page});
+    // loadData({keyWord, page});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 

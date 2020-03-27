@@ -2,6 +2,7 @@ import theme from './state/theme';
 
 const initalState = {
   theme,
+  userInfo: {},
 };
 
 export default function app(state = initalState, action) {

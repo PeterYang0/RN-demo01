@@ -1,4 +1,3 @@
-import {Toast} from '@ant-design/react-native';
 import {filterNullValueObject, generateUrlWithGetParam} from './index';
 import ToastManager from '@/utils/toast';
 
@@ -39,7 +38,7 @@ export default function request(url, options = {}) {
         resolve(res);
       })
       .catch(err => {
-        Toast.info('网络异常!');
+        ToastManager.show('网络异常!');
         reject(err);
       });
   });

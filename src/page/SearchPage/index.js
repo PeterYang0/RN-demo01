@@ -14,8 +14,10 @@ import ListItem from '@/components/ListItem';
 import {fetchHotList} from '@/services/hotListService';
 import NavigationBar from '@/components/NavigationBar.js';
 import NoData from '@/components/NoData';
+import ToastManager from '@/utils/toast';
 
 export default function SearchPage(props) {
+  ToastManager.show('网络异常!');
   const {
     navigation,
     route: {
@@ -117,6 +119,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#fff',
     height: 35,
+    paddingTop: 3,
+    paddingBottom: 3,
     paddingLeft: 15,
     paddingRight: 15,
   },
